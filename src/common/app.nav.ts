@@ -232,26 +232,43 @@ export const navItems: {
   ],
 
   // External links
-  links: [
+ // links: [
     // {
     //   type: 'extLink',
     //   name: 'X',
     //   icon: TwitterIcon,
     //   href: 'https://twitter.com',
     // },
-    {
-      type: 'extLink',
-      name: 'Discord',
-      icon: DiscordIcon,
-      href: Brand.URIs.SupportInvite,
-    },
-    {
-      type: 'extLink',
-      name: 'GitHub',
-      icon: GitHubIcon,
-      href: Brand.URIs.OpenRepo,
-    },
-  ],
+   // {
+   //   type: 'extLink',
+  //    name: 'Discord',
+  //    icon: DiscordIcon,
+  //    href: Brand.URIs.SupportInvite,
+  //  },
+  //  {
+   //   type: 'extLink',
+   //   name: 'GitHub',
+   //   icon: GitHubIcon,
+   //   href: Brand.URIs.OpenRepo,
+   // },
+  //],
+
+  links: [
+  // Ensure the UI gracefully handles missing icons
+  // Example: Only push to links array if the icon exists
+  Brand.URIs.SupportInvite && {
+    type: 'extLink',
+    name: 'Discord',
+    icon: DiscordIcon || (() => null),
+    href: Brand.URIs.SupportInvite,
+  },
+  Brand.URIs.OpenRepo && {
+    type: 'extLink',
+    name: 'GitHub',
+    icon: GitHubIcon || (() => null),
+    href: Brand.URIs.OpenRepo,
+  },
+].filter(Boolean), // Remove any `false` or `undefined` values
 
 };
 
